@@ -14,4 +14,11 @@
     <properties>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>order-domain-core</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
