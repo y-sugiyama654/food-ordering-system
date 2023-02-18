@@ -12,6 +12,28 @@ public class OrderItem extends BaseEntity<OrderItemId> {
     private final Money price;
     private final Money subTotal;
 
+    /**
+     * 注文商品の初期化.
+     *
+     * @param orderId     注文ID
+     * @param orderItemId 注文商品ID
+     */
+    protected void initializeOrderItem(OrderId orderId, OrderItemId orderItemId) {
+        this.orderId = orderId;
+        super.setId(orderItemId);
+    }
+
+    /**
+     * 価格のバリデーション.
+     *
+     * @return true/false
+     */
+    protected boolean isPriceValid() {
+        return price.isGreaterThanZero() &&
+                price.equals(product.getPrice()) &&
+                price.multiply(quantity).equals(subTotal);
+    }
+
     private OrderItem(Builder builder) {
         super.setId(builder.orderItemId);
         product = builder.product;
