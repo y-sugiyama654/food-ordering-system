@@ -8,6 +8,7 @@ import org.example.order.service.domain.entiry.Restaurant;
 import org.example.order.service.domain.event.OrderCancelledEvent;
 import org.example.order.service.domain.event.OrderCreatedEvent;
 import org.example.order.service.domain.event.OrderPaidEvent;
+import org.example.order.service.domain.exception.OrderDomainException;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -56,7 +57,7 @@ public class OrderDomainServiceImpl implements OrderDomainService {
 
     private void validateRestaurant(Restaurant restaurant) {
         if (!restaurant.isActive()) {
-            throw new DomainException(String.format("Restaurant with id %s is currently not active.",
+            throw new OrderDomainException(String.format("Restaurant with id %s is currently not active.",
                     restaurant.getId().getValue()));
         }
 
